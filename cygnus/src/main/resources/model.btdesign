@@ -1,0 +1,7 @@
+import "classpath:/common.btdesign"
+
+Application Cygnus {
+	
+    basePackage=com.boolian
+
+}

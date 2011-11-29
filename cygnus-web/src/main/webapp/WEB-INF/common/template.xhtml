@@ -1,0 +1,36 @@
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:t="http://myfaces.apache.org/tomahawk" xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jstl/core" xmlns:sf="http://www.springframework.org/tags/faces" xmlns:a="ApplicationTaglib"
+>
+	<head>
+		<title><h:outputFormat value="#{msg['navigation.title']}">
+					<f:param value="#{msg['model.application.name']}" />
+				</h:outputFormat></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<t:stylesheet path="/themes/basic/style.css" />
+	</head>
+	<body>
+		<div id="header">
+			<ui:include src="header.html" />
+		</div>
+		<div class="menu">
+			<ui:include src="/WEB-INF/generated/common/menu.html" />
+		</div>
+		<div id="breadCrumb">
+			
+	<c:forEach var="item" items="${a:breadCrumb(flowExecutionContext,msg)}" varStatus="status" begin="0" step="1">
+		<c:if test="${status.last}">
+			<span class="lastItem">#{item.crudOperation} #{item.domainObjectName}</span>
+		</c:if>
+		<c:if test="${not status.last}">#{item.crudOperation} #{item.domainObjectName} #{" &gt; "}</c:if>
+	</c:forEach>
+
+		</div> 
+		<div id="main">
+			<ui:insert name="content" />
+		</div>
+		<div id="footer">
+			<ui:include src="footer.html" />
+		</div>
+	</body>
+	</html>
+	

@@ -1,0 +1,29 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:t="http://myfaces.apache.org/tomahawk" xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jstl/core" xmlns:sf="http://www.springframework.org/tags/faces" xmlns:a="ApplicationTaglib"
+>
+	<body>
+		<ui:composition template="/WEB-INF/common/template.xhtml">
+			<ui:define name="content">
+				<h1>#{msg['error.header']}</h1>
+				<p><span class="errors">
+					<c:if test="#{exception == null}">
+						<h:outputFormat value="#{msg['org.fornax.cartridges.sculptor.framework.errorhandling.SystemException']}"
+							escape="false">
+							 <f:param value="page.error" />
+							 <f:param value="" />
+						</h:outputFormat>
+					</c:if>
+					<c:if test="#{exception != null}">
+						<h:outputFormat value="#{msg['org.fornax.cartridges.sculptor.framework.errorhandling.SystemException']}"
+							escape="false">
+							 <f:param value="${a:resolveSystemExceptionErrorCode(exception)}" />
+							 <f:param value="${a:resolveSystemExceptionMessage(exception)}" />
+						</h:outputFormat>
+					</c:if>
+				</span></p>
+			</ui:define>
+		</ui:composition>
+	</body>
+	</html>
+	

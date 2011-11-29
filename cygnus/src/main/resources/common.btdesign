@@ -1,0 +1,35 @@
+
+ApplicationPart CommonPart {	
+	
+	Module common {
+		
+		basePackage=com.boolian.cygnus.common
+		
+		//Language Entity
+		Entity Language {
+			scaffold
+			String char2Code key;
+			String char3Code nullable;
+			String name required;	
+		}
+		
+		
+        //Code Table Header		
+		Entity CodeTableHeader {
+			scaffold
+			String name key;
+			String description nullable;
+			reference Set<@CodeTableDetail> codeTableDetails opposite codeTableHeader;
+		}
+		
+		//Code Table Details
+		Entity CodeTableDetail {
+			not aggregateRoot
+			reference @CodeTableHeader codeTableHeader opposite codeTableDetails;
+			String name key;
+			String code;
+			reference @Language langId cascade="save-update";
+			String description nullable;							
+		}	
+	}
+}

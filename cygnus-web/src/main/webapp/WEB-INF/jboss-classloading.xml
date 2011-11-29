@@ -1,0 +1,4 @@
+<classloading xmlns="urn:jboss:classloading:1.0" name="cygnus-web.war"
+	domain="cygnus-web_domain" export-all="NON_EMPTY"
+	import-all="true">
+</classloading>
