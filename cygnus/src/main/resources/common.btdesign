@@ -11,8 +11,7 @@ ApplicationPart CommonPart {
 			String char3Code nullable;
 			String name required;	
 		}
-		
-		//Test Comment		
+			
 		Entity CodeTableHeader {
 			scaffold
 			String name key;
