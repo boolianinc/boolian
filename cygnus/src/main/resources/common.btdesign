@@ -5,16 +5,13 @@ ApplicationPart CommonPart {
 		
 		basePackage=com.boolian.cygnus.common
 		
-		//Language Entity
 		Entity Language {
 			scaffold
 			String char2Code key;
 			String char3Code nullable;
 			String name required;	
 		}
-		
-		
-        //Code Table Header		
+				
 		Entity CodeTableHeader {
 			scaffold
 			String name key;
@@ -22,7 +19,6 @@ ApplicationPart CommonPart {
 			reference Set<@CodeTableDetail> codeTableDetails opposite codeTableHeader;
 		}
 		
-		//Code Table Details
 		Entity CodeTableDetail {
 			not aggregateRoot
 			reference @CodeTableHeader codeTableHeader opposite codeTableDetails;
