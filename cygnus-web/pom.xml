@@ -1,334 +1,122 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- POM file generated with GWT webAppCreator -->
+  <modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>cygnus-parent</artifactId>
 		<groupId>com.boolian</groupId>
 		<version>1.0-SNAPSHOT</version>
 		<relativePath>../cygnus-parent/</relativePath>
-	</parent>
-	<groupId>com.boolian</groupId>
-	<artifactId>cygnus-web</artifactId>
-	<packaging>war</packaging>
-	<name>Web project for cygnus-web</name>
-	<build>
-		<finalName>${project.artifactId}</finalName>
-		<plugins>
-			<plugin>
-				<artifactId>maven-clean-plugin</artifactId>
-				<version>2.4.1</version>
-				<configuration>
-					<filesets>
-						<fileset>
-							<directory>src/generated</directory>
-							<includes>
-								<include>**/*.java</include>
-								<include>**/*.xml</include>
-								<include>**/*.properties</include>
-							</includes>
-							<excludes>
-								<exclude>**/.svn/*</exclude>
-							</excludes>
-							<followSymlinks>false</followSymlinks>
-						</fileset>
-						<fileset>
-							<directory>src/test/generated</directory>
-							<includes>
-								<include>**/*.java</include>
-								<include>**/*.xml</include>
-								<include>**/*.properties</include>
-							</includes>
-							<excludes>
-								<exclude>**/.svn/*</exclude>
-							</excludes>
-							<followSymlinks>false</followSymlinks>
-						</fileset>
-						<fileset>
-							<directory>src/main/webapp/WEB-INF/generated</directory>
-							<includes>
-								<include>**/*.html</include>
-                                <include>**/*.xml</include>
-							</includes>
-							<excludes>
-								<exclude>**/.svn/*</exclude>
-							</excludes>
-							<followSymlinks>false</followSymlinks>
-						</fileset>
-					</filesets>
-				</configuration>
-			</plugin>
-            <plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>maven-jetty-plugin</artifactId>
-				<version>6.1.11</version>
-				<configuration>
-					<webAppConfig>
-						<contextPath>/</contextPath>
-					</webAppConfig>
-					<port>8888</port>
-					<stopKey>STOP</stopKey>
-					<stopPort>8889</stopPort>
-					<systemProperties>
-						<!-- enable easy JMX connection to JConsole -->
-						<systemProperty>
-							<name>com.sun.management.jmxremote</name>
-							<value />
-						</systemProperty>
-						<systemProperty>
-							<name>jetty.port</name>
-							<value>8888</value>
-						</systemProperty>
-					</systemProperties>
-					<scanIntervalSeconds>10</scanIntervalSeconds>
-				</configuration>
-			</plugin>       
-			<plugin>
-				<groupId>org.fornax.toolsupport</groupId>
-				<artifactId>fornax-oaw-m2-plugin</artifactId>
-				<version>${fornax-oaw-m2.version}</version>
-				<configuration>
-					<workflowEngine>mwe2</workflowEngine>
-					<workflowDescriptor>file://${basedir}/src/main/resources/generator/GuiWorkflow.mwe2</workflowDescriptor>
-					<checkFilesets>
-						<checkFileset>
-							<directory>${basedir}</directory>
-							<includes>
-								<include>src/main/resources/*.guidesign</include>
-								<include>../${artifactIdBase}/src/main/resources/*.btdesign</include>
-							</includes>
-						</checkFileset>
-					</checkFilesets>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>run-workflow</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.3</version>
-				<configuration>
-					<forkMode>once</forkMode>
-					<argLine>-Xms32m -Xmx1024m</argLine>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-	<dependencies>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>cygnus</artifactId>
-			<version>${project.version}</version>
-			<!-- Add scope provided when deployed as ear -->
-		    <!-- <scope>provided</scope> -->
-		</dependency>
-        <dependency>
-            <groupId>org.springframework.webflow</groupId>
-            <artifactId>org.springframework.faces</artifactId>
-            <version>${spring.webflow.version}</version>
-            <exclusions>
-            	<exclusion>
-            		<groupId>org.apache.commons</groupId>
-  					<artifactId>com.springsource.org.apache.commons.logging</artifactId>
-            	</exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.webflow</groupId>
-            <artifactId>org.springframework.js</artifactId>
-            <version>${spring.webflow.version}</version>
-            <exclusions>
-            	<exclusion>
-            		<groupId>org.apache.commons</groupId>
-  					<artifactId>com.springsource.org.apache.commons.logging</artifactId>
-            	</exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.webflow</groupId>
-            <artifactId>org.springframework.webflow</artifactId>
-            <version>${spring.webflow.version}</version>
-            <exclusions>
-            	<exclusion>
-            		<groupId>org.apache.commons</groupId>
-  					<artifactId>com.springsource.org.apache.commons.logging</artifactId>
-            	</exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>javax.faces</groupId>
-            <artifactId>com.springsource.javax.faces</artifactId>
-            <version>1.2.0.09</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.faces</groupId>
-            <artifactId>com.springsource.com.sun.faces</artifactId>
-            <version>1.2.0.09</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.el</groupId>
-            <artifactId>com.springsource.javax.el</artifactId>
-            <version>1.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.el</groupId>
-            <artifactId>com.springsource.org.jboss.el</artifactId>
-            <version>2.0.0.GA</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.myfaces.tomahawk</groupId>
-            <artifactId>tomahawk12</artifactId>
-            <version>1.1.8</version>
-            <exclusions>
-				<exclusion>
-					<groupId>commons-logging</groupId>
-  					<artifactId>commons-logging</artifactId>
-				</exclusion>
-			</exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.facelets</groupId>
-            <artifactId>jsf-facelets</artifactId>
-            <version>1.1.15</version>
-        </dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-beans</artifactId>
-			<version>${spring.version}</version>
-			<!-- Add scope provided when deployed as ear -->
-		    <!-- <scope>provided</scope> -->
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
-			<!-- Add scope provided when deployed as ear -->
-		    <!-- <scope>provided</scope> -->
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-			<version>${spring.version}</version>
-			<!-- Add scope provided when deployed as ear -->
-		    <!-- <scope>provided</scope> -->
-		</dependency>
-        <dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>${hibernate.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.transaction</groupId>
-					<artifactId>jta</artifactId>
-				</exclusion>
-			</exclusions>
-			<!-- Add scope provided when deployed as ear -->
-			<!-- Add scope test provided deployed in jboss -->
-		    <scope>provided</scope> 
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-annotations</artifactId>
-			<version>${hibernate.annotations.version}</version>
-			<!-- Add scope provided when deployed as ear -->
-			<!-- Add scope test provided deployed in jboss -->
-		    <scope>provided</scope> 
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>${hibernate.validator.version}</version>
-			<!-- Add scope provided when deployed as ear -->
-			<!-- Add scope test provided deployed in jboss -->
-		    <scope>provided</scope> 
-		</dependency>
-		<dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>${commons-lang.version}</version>
-        </dependency>
-		<dependency>
-			<groupId>org.jmock</groupId>
-			<artifactId>jmock</artifactId>
-			<version>2.2.0</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.fornax.cartridges</groupId>
-			<artifactId>fornax-cartridges-sculptor-framework-web</artifactId>
-			<version>${sculptor.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.fornax.cartridges</groupId>
-			<artifactId>fornax-cartridges-sculptor-framework</artifactId>
-			<version>${sculptor.version}</version>
-			<classifier>without-ejb</classifier>
-			<!-- Add scope provided when deployed as ear -->
-		    <!-- <scope>provided</scope> -->
-		</dependency>
-		<dependency>
-			<groupId>org.fornax.cartridges</groupId>
-			<artifactId>fornax-cartridges-sculptor-framework-test</artifactId>
-			<version>${sculptor.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.fornax.cartridges</groupId>
-			<artifactId>fornax-cartridges-sculptor-generator</artifactId>
-			<version>${sculptor.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>taglibs</groupId>
-			<artifactId>standard</artifactId>
-			<version>1.1.2</version>
-		</dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.6</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- Start copy from business project -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
-			<!-- Add scope provided when deployed in jboss -->
-		    <scope>provided</scope>
-		</dependency>
-			<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${slf4j.version}</version>
-			<!-- Add scope provided when deployed in jboss -->
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>log4j-over-slf4j</artifactId>
-			<version>${slf4j.version}</version>
-			<!-- Add scope provided when deployed in jboss -->
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>${logback.version}</version>
-			<!-- Add scope provided when deployed in jboss -->
-		    <scope>provided</scope>
-		</dependency> 
-		<!-- End Copied from business project -->               
-	</dependencies>
+	</parent>  
+  <groupId>com.boolian</groupId>
+  <artifactId>cygnus-web</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>GWT Maven Archetype</name>
+
+  <properties>
+    <!-- Convenience property to set the GWT version -->
+    <gwtVersion>2.4.0</gwtVersion>
+    <!-- GWT needs at least java 1.5 -->
+    <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-servlet</artifactId>
+      <version>${gwtVersion}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-user</artifactId>
+      <version>${gwtVersion}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.7</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>1.0.0.GA</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>1.0.0.GA</version>
+      <classifier>sources</classifier>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <!-- Generate compiled stuff in the folder used for developing mode -->
+    <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
+
+    <plugins>
+
+      <!-- GWT Maven Plugin -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>gwt-maven-plugin</artifactId>
+        <version>2.4.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>compile</goal>
+              <goal>test</goal>
+              <goal>i18n</goal>
+              <goal>generateAsync</goal>
+            </goals>
+          </execution>
+        </executions>
+        <!-- Plugin configuration. There are many available options, see 
+          gwt-maven-plugin documentation at codehaus.org -->
+        <configuration>
+          <runTarget>cygnus.html</runTarget>
+          <hostedWebapp>${webappDirectory}</hostedWebapp>
+          <i18nMessagesBundle>com.boolian.cygnus.client.Messages</i18nMessagesBundle>
+        </configuration>
+      </plugin>
+
+      <!-- Copy static web files before executing gwt:run -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.1.1</version>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>exploded</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <webappDirectory>${webappDirectory}</webappDirectory>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
 </project>

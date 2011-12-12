@@ -1,4 +1,0 @@
-import 'classpath:/model.btdesign' 
-gui CygnusWeb for Cygnus {
-
-}

@@ -5,26 +5,88 @@ ApplicationPart CommonPart {
 		
 		basePackage=com.boolian.cygnus.common
 		
+//		Service TypeListService {
+//			
+//			createTypeList(@TypeList typeList);
+//			createTypeListDetail(@TypeListDetail typeListDetail);
+//		}
+		
+//		Resource TypeListResource {
+//			scaffold
+//		}
+//		        
+//        DataTransferObject TypeListDetailsDTO {
+//        	
+//        	String name;
+//        	String code;
+//        	String description;
+//        }
+//
+
+		Resource TypeListResource {
+			
+			show delegates to TypeListService.findById;
+			String createForm;
+			create(@TypeListForm typeListForm);
+			update(@TypeListForm typeListForm) throws TypeListNotFoundException;
+			String updateForm;
+			delete delegates to TypeListService.delete;
+			showAll delegates to TypeListService.findAll;
+		}
+
+		DataTransferObject TypeListForm {
+			
+			String name
+			String description
+			IDTYPE id
+			Long version
+		}
+
+		Service TypeListService {
+			
+				findById delegates to TypeListRepository.findById;
+				save delegates to TypeListRepository.save;
+				delete delegates to TypeListRepository.delete;
+				findAll delegates to TypeListRepository.findAll;			
+		}
+	
 		Entity Language {
-			scaffold
+			//scaffold
 			String char2Code key;
 			String char3Code nullable;
 			String name required;	
+			
+			Repository LanguageRepository {
+				
+				findById;
+				save;
+				delete;
+				findAll;
+			}
 		}
 			
-		Entity CodeTableHeader {
-			scaffold
+		Entity TypeList {
+			//scaffold
 			String name key;
 			String description nullable;
-			reference Set<@CodeTableDetail> codeTableDetails opposite codeTableHeader;
+		//	reference Set<@TypeListDetail> typeListDetail opposite typeList;
+			
+			Repository TypeListRepository {
+				
+				findById;
+				save;
+				delete;
+				findAll;				
+			}
 		}
 		
-		Entity CodeTableDetail {
+		Entity TypeListDetail {
 			not aggregateRoot
-			reference @CodeTableHeader codeTableHeader opposite codeTableDetails;
+			//reference @TypeList typeList opposite typeListDetail;
 			String name key;
 			String code;
-			reference @Language langId cascade="save-update";
+			reference @Language langId; 
+			//cascade="save-update";
 			String description nullable;							
 		}	
 	}

@@ -1,15 +1,12 @@
 # Check sum file
 # Entries are in the following format: checksum:file
 
-842838837a65456e597ba762c0828b8892522e66:src/test/resources/dbunit/LanguageServiceTest.xml
 1637b24cfd3dffcc0085f10985a0e13e718decb1:src/main/resources/more.xml
 738b2b0aff73d7fec1f387c206c48f073f5ab7e4:src/main/resources/logback.xml
-842838837a65456e597ba762c0828b8892522e66:src/test/resources/dbunit/CodeTableHeaderServiceTest.xml
 ea80260845c352ba5c1397a17b90e0a2e21da3da:src/test/resources/more-test.xml
-fb34f8f0528a0ab9348b063ac8f21ac9357ab681:src/main/resources/spring.properties
+73401126b0f64705e5e05a4ab4d8c118a9b21fcd:src/main/resources/spring.properties
 c91e71fdf76aab752e65ec41f06a9f050f6a644f:src/test/resources/ehcache.xml
 82a8a817ae011a80db27a8536ae87c7cf9763dd1:src/main/resources/ehcache.xml
 fd044a6a2715a6121183c955b1bb31f11820914f:src/test/resources/spring-test.properties
+33f84e7b8abe64bcd5cc899368d8b2533dfcbfa0:src/test/resources/dbunit/TypeListServiceTest.xml
 407eaf3d3ac1bf5be2de2bc41b18730e7347a5c5:src/test/resources/logback-test.xml
-5ab84ea0b4e8202a5853f0e9511e7107bf7c248a:src/test/java/com/boolian/cygnus/common/service/LanguageServiceTest.java
-6924c82c052f5aee1105a75b0cf097da257fe287:src/test/java/com/boolian/cygnus/common/service/CodeTableHeaderServiceTest.java

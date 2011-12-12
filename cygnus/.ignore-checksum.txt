@@ -13,3 +13,6 @@ src/test/resources/log4j-test.properties
 src/test/resources/placeholder.txt
 src/main/resources/common.btdesign
 src/main/resources/.DS_Store
+src/test/java/com/boolian/cygnus/common/service/TypeListServiceTest.java
+src/test/java/com/boolian/cygnus/common/service/LanguageServiceTest.java
+src/main/java/com/boolian/cygnus/common/rest/TypeListResource.java

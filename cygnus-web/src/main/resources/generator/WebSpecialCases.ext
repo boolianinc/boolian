@@ -1,7 +1,0 @@
-import sculptormetamodel;
-import sculptorguimetamodel;
-
-extension extensions::properties;
-
-	
-	

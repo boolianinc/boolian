@@ -11,6 +11,7 @@
 	</parent>
 	<groupId>com.boolian</groupId>
 	<artifactId>cygnus</artifactId>
+	<packaging>war</packaging>
 	<name>Business tier project for cygnus</name>
 	<build>
 		<finalName>${project.artifactId}</finalName>
@@ -451,5 +452,37 @@
             <!-- Add scope provided when deployed in jboss -->
             <!-- <scope>provided</scope> -->
         </dependency>
+        <!-- Copied for REST tutorial - Faisal -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.codehaus.jackson</groupId>
+		    <artifactId>jackson-core-lgpl</artifactId>
+		    <version>1.4.3</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.codehaus.jackson</groupId>
+		    <artifactId>jackson-mapper-lgpl</artifactId>
+		    <version>1.4.3</version>
+		</dependency>
+		<dependency>
+		   <groupId>org.springframework</groupId>
+		   <artifactId>org.springframework.oxm</artifactId>
+		   <version>${spring.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.thoughtworks.xstream</groupId>
+		    <artifactId>xstream</artifactId>
+		    <version>1.3.1</version>
+		</dependency>        
+        <!-- End REST tutorial -->
 	</dependencies>
 </project>
